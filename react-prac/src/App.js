@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { func } from 'prop-types';
+import Hello from './hello';
 
 function App() {
-
+  
   // let [c,d] = [10, 100]; ES6 Destructuring 문법 let c = 10 / let d = 100
 
   let [좋아요, 좋아요변경] = useState(0); // 앞에는 변수 , 뒤는 변경함수
@@ -24,6 +25,10 @@ function App() {
         <div style={ { color : '#fb5849', fontSize : '20px' } }>개발 Blog</div>
       </div>
       <button onClick={ titleChg }>버튼</button>
+
+      <Modal />
+      <Hello />
+
       <div className="list">
         <h3> { 글제목[0] } <span onClick={ () => { 좋아요변경(좋아요 + 1) }}>👍</span>{ 좋아요 }</h3>
         <p>7월 31일 발행</p>
@@ -39,8 +44,24 @@ function App() {
         <p>7월 31일 발행</p>
         <hr/>
       </div> 
+
+      
+
     </div>
   );
+}
+
+function Modal() { // return() 안에는 html 태그 하나로 묶어야함
+  return (
+    //div 대신에 fragment를 사용해도 됨 <> </>
+    <> 
+    <div className="modal">
+        <h2>제목</h2>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+      </>
+  )
 }
 
 export default App;
