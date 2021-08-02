@@ -4,11 +4,22 @@ import logo from './logo.svg';
 import './App.css';
 import { func } from 'prop-types';
 import Hello from './hello';
+import Wrapper from './Wrapper';
+import Counter from './Counter';
+import InputSample from './InputSample';
+import InputSamplee from './InputSample2';
+import UserList from './UserList';
 
 function App() {
-  
-  // let [c,d] = [10, 100]; ES6 Destructuring 문법 let c = 10 / let d = 100
 
+  // let [c,d] = [10, 100]; ES6 Destructuring 문법 let c = 10 / let d = 100
+  const style = {
+    color: '#fb5849',
+    fontSize: 24,
+    backgroundColor: 'black',
+    padding: '1rem'
+  };
+  const name = "react";
   let [좋아요, 좋아요변경] = useState(0); // 앞에는 변수 , 뒤는 변경함수
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 강의']); //[a,b]
   // 자주 변경되거나 서버에서 가져오는 데이터들은 useState을 사용하여 html이 재렌더링을 하여 새로고침 없이 랜더링 될수있게 함.
@@ -27,8 +38,17 @@ function App() {
       <button onClick={ titleChg }>버튼</button>
 
       <Modal />
-      <Hello />
+      {/* 인라인으로 스타일 삽입 */}
+      <div style={style}>{name}</div>
 
+      <Wrapper>
+        <Hello name="react" color="red" isSpecial />
+        <Hello color="pink" />
+      </Wrapper>
+      <Counter/>
+      <InputSample/>
+      <InputSamplee/>
+      <UserList/>
       <div className="list">
         <h3> { 글제목[0] } <span onClick={ () => { 좋아요변경(좋아요 + 1) }}>👍</span>{ 좋아요 }</h3>
         <p>7월 31일 발행</p>
@@ -43,10 +63,7 @@ function App() {
         <h3> { 글제목[2] } </h3>
         <p>7월 31일 발행</p>
         <hr/>
-      </div> 
-
-      
-
+      </div>
     </div>
   );
 }
